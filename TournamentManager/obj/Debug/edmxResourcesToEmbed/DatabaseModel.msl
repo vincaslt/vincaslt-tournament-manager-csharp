@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseModelContainer">
+    <EntitySetMapping Name="Tournaments">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Tournament)">
+        <MappingFragment StoreEntitySet="Tournaments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Player)">
+        <MappingFragment StoreEntitySet="Players">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Game)">
+        <MappingFragment StoreEntitySet="Games">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TimeControls">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.TimeControl)">
+        <MappingFragment StoreEntitySet="TimeControls">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Control" ColumnName="Control" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AgeGroups">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.AgeGroup)">
+        <MappingFragment StoreEntitySet="AgeGroups">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Moves">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Move)">
+        <MappingFragment StoreEntitySet="Moves">
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="GameId" ColumnName="GameId" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="From" ColumnName="From" />
+          <ScalarProperty Name="To" ColumnName="To" />
+          <ScalarProperty Name="Piece" ColumnName="Piece" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="TournamentTimeControl" TypeName="DatabaseModel.TournamentTimeControl" StoreEntitySet="TournamentTimeControl">
+      <EndProperty Name="Tournament">
+        <ScalarProperty Name="Id" ColumnName="Tournaments_Id" />
+      </EndProperty>
+      <EndProperty Name="TimeControl">
+        <ScalarProperty Name="Id" ColumnName="TimeControls_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TournamentAgeGroup" TypeName="DatabaseModel.TournamentAgeGroup" StoreEntitySet="TournamentAgeGroup">
+      <EndProperty Name="Tournament">
+        <ScalarProperty Name="Id" ColumnName="Tournaments_Id" />
+      </EndProperty>
+      <EndProperty Name="AgeGroup">
+        <ScalarProperty Name="Id" ColumnName="AgeGroups_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TournamentPlayer" TypeName="DatabaseModel.TournamentPlayer" StoreEntitySet="TournamentPlayer">
+      <EndProperty Name="Tournament">
+        <ScalarProperty Name="Id" ColumnName="Tournaments_Id" />
+      </EndProperty>
+      <EndProperty Name="Player">
+        <ScalarProperty Name="Id" ColumnName="Players_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GamePlayer" TypeName="DatabaseModel.GamePlayerWhite" StoreEntitySet="Games">
+      <EndProperty Name="Player">
+        <ScalarProperty Name="Id" ColumnName="PlayerWhite_Id" />
+      </EndProperty>
+      <EndProperty Name="Game">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GamePlayer1" TypeName="DatabaseModel.GamePlayerBlack" StoreEntitySet="Games">
+      <EndProperty Name="Player">
+        <ScalarProperty Name="Id" ColumnName="PlayerBlack_Id" />
+      </EndProperty>
+      <EndProperty Name="Game">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GameTimeControl" TypeName="DatabaseModel.GameTimeControl" StoreEntitySet="Games">
+      <EndProperty Name="TimeControl">
+        <ScalarProperty Name="Id" ColumnName="TimeControl_Id" />
+      </EndProperty>
+      <EndProperty Name="Game">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MoveGame" TypeName="DatabaseModel.MoveGame" StoreEntitySet="Moves">
+      <EndProperty Name="Game">
+        <ScalarProperty Name="Id" ColumnName="Game_Id" />
+      </EndProperty>
+      <EndProperty Name="Move">
+        <ScalarProperty Name="Number" ColumnName="Number" />
+        <ScalarProperty Name="GameId" ColumnName="GameId" />
+        <ScalarProperty Name="Color" ColumnName="Color" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

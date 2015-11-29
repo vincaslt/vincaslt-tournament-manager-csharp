@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DatabaseModelStoreContainer">
+    <EntitySet Name="Tournaments" EntityType="DatabaseModel.Store.Tournaments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Players" EntityType="DatabaseModel.Store.Players" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Games" EntityType="DatabaseModel.Store.Games" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TimeControls" EntityType="DatabaseModel.Store.TimeControls" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AgeGroups" EntityType="DatabaseModel.Store.AgeGroups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Moves" EntityType="DatabaseModel.Store.Moves" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TournamentTimeControl" EntityType="DatabaseModel.Store.TournamentTimeControl" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TournamentAgeGroup" EntityType="DatabaseModel.Store.TournamentAgeGroup" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TournamentPlayer" EntityType="DatabaseModel.Store.TournamentPlayer" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_TournamentTimeControl_Tournament" Association="DatabaseModel.Store.FK_TournamentTimeControl_Tournament">
+      <End Role="Tournament" EntitySet="Tournaments" />
+      <End Role="TournamentTimeControl" EntitySet="TournamentTimeControl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TournamentTimeControl_TimeControl" Association="DatabaseModel.Store.FK_TournamentTimeControl_TimeControl">
+      <End Role="TimeControl" EntitySet="TimeControls" />
+      <End Role="TournamentTimeControl" EntitySet="TournamentTimeControl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TournamentAgeGroup_Tournament" Association="DatabaseModel.Store.FK_TournamentAgeGroup_Tournament">
+      <End Role="Tournament" EntitySet="Tournaments" />
+      <End Role="TournamentAgeGroup" EntitySet="TournamentAgeGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TournamentAgeGroup_AgeGroup" Association="DatabaseModel.Store.FK_TournamentAgeGroup_AgeGroup">
+      <End Role="AgeGroup" EntitySet="AgeGroups" />
+      <End Role="TournamentAgeGroup" EntitySet="TournamentAgeGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TournamentPlayer_Tournament" Association="DatabaseModel.Store.FK_TournamentPlayer_Tournament">
+      <End Role="Tournament" EntitySet="Tournaments" />
+      <End Role="TournamentPlayer" EntitySet="TournamentPlayer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TournamentPlayer_Player" Association="DatabaseModel.Store.FK_TournamentPlayer_Player">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="TournamentPlayer" EntitySet="TournamentPlayer" />
+    </AssociationSet>
+    <AssociationSet Name="GamePlayer" Association="DatabaseModel.Store.GamePlayerWhite">
+      <End Role="Game" EntitySet="Games" />
+      <End Role="Player" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="GamePlayer1" Association="DatabaseModel.Store.GamePlayerBlack">
+      <End Role="Game" EntitySet="Games" />
+      <End Role="Player" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="GameTimeControl" Association="DatabaseModel.Store.GameTimeControl">
+      <End Role="Game" EntitySet="Games" />
+      <End Role="TimeControl" EntitySet="TimeControls" />
+    </AssociationSet>
+    <AssociationSet Name="MoveGame" Association="DatabaseModel.Store.MoveGame">
+      <End Role="Move" EntitySet="Moves" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Tournaments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BirthDate" Type="datetime" Nullable="false" />
+    <Property Name="Rating" Type="float" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Games">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Result" Type="nvarchar" Nullable="false" MaxLength="7" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="PlayerWhite_Id" Type="int" Nullable="false" />
+    <Property Name="PlayerBlack_Id" Type="int" Nullable="false" />
+    <Property Name="TimeControl_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TimeControls">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Control" Type="nvarchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="AgeGroups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BirthDate" Type="datetime" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Moves">
+    <Key>
+      <PropertyRef Name="Number" />
+      <PropertyRef Name="GameId" />
+      <PropertyRef Name="Color" />
+    </Key>
+    <Property Name="Number" Type="int" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="GameId" Type="int" Nullable="false" />
+    <Property Name="Color" Type="nchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="1" />
+    <Property Name="From" Type="nchar" Nullable="false" MaxLength="2" />
+    <Property Name="To" Type="nchar" Nullable="false" MaxLength="2" />
+    <Property Name="Piece" Type="nchar" Nullable="false" MaxLength="1" />
+    <Property Name="Game_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TournamentTimeControl">
+    <Key>
+      <PropertyRef Name="Tournaments_Id" />
+      <PropertyRef Name="TimeControls_Id" />
+    </Key>
+    <Property Name="Tournaments_Id" Type="int" Nullable="false" />
+    <Property Name="TimeControls_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TournamentAgeGroup">
+    <Key>
+      <PropertyRef Name="Tournaments_Id" />
+      <PropertyRef Name="AgeGroups_Id" />
+    </Key>
+    <Property Name="Tournaments_Id" Type="int" Nullable="false" />
+    <Property Name="AgeGroups_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TournamentPlayer">
+    <Key>
+      <PropertyRef Name="Tournaments_Id" />
+      <PropertyRef Name="Players_Id" />
+    </Key>
+    <Property Name="Tournaments_Id" Type="int" Nullable="false" />
+    <Property Name="Players_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="GamePlayerWhite">
+    <End Role="Game" Type="DatabaseModel.Store.Games" Multiplicity="*" />
+    <End Role="Player" Type="DatabaseModel.Store.Players" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="PlayerWhite_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GamePlayerBlack">
+    <End Role="Game" Type="DatabaseModel.Store.Games" Multiplicity="*" />
+    <End Role="Player" Type="DatabaseModel.Store.Players" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="PlayerBlack_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GameTimeControl">
+    <End Role="Game" Type="DatabaseModel.Store.Games" Multiplicity="*" />
+    <End Role="TimeControl" Type="DatabaseModel.Store.TimeControls" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="TimeControl">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="TimeControl_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MoveGame">
+    <End Role="Move" Type="DatabaseModel.Store.Moves" Multiplicity="*" />
+    <End Role="Game" Type="DatabaseModel.Store.Games" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Game">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Move">
+        <PropertyRef Name="Game_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TournamentTimeControl_Tournament">
+    <End Role="Tournament" Type="DatabaseModel.Store.Tournaments" Multiplicity="1" />
+    <End Role="TournamentTimeControl" Type="DatabaseModel.Store.TournamentTimeControl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tournament">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TournamentTimeControl">
+        <PropertyRef Name="Tournaments_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TournamentTimeControl_TimeControl">
+    <End Role="TournamentTimeControl" Type="DatabaseModel.Store.TournamentTimeControl" Multiplicity="*" />
+    <End Role="TimeControl" Type="DatabaseModel.Store.TimeControls" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="TimeControl">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TournamentTimeControl">
+        <PropertyRef Name="TimeControls_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TournamentAgeGroup_Tournament">
+    <End Role="Tournament" Type="DatabaseModel.Store.Tournaments" Multiplicity="1" />
+    <End Role="TournamentAgeGroup" Type="DatabaseModel.Store.TournamentAgeGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tournament">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TournamentAgeGroup">
+        <PropertyRef Name="Tournaments_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TournamentAgeGroup_AgeGroup">
+    <End Role="TournamentAgeGroup" Type="DatabaseModel.Store.TournamentAgeGroup" Multiplicity="*" />
+    <End Role="AgeGroup" Type="DatabaseModel.Store.AgeGroups" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AgeGroup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TournamentAgeGroup">
+        <PropertyRef Name="AgeGroups_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TournamentPlayer_Tournament">
+    <End Role="Tournament" Type="DatabaseModel.Store.Tournaments" Multiplicity="1" />
+    <End Role="TournamentPlayer" Type="DatabaseModel.Store.TournamentPlayer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tournament">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TournamentPlayer">
+        <PropertyRef Name="Tournaments_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TournamentPlayer_Player">
+    <End Role="TournamentPlayer" Type="DatabaseModel.Store.TournamentPlayer" Multiplicity="*" />
+    <End Role="Player" Type="DatabaseModel.Store.Players" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TournamentPlayer">
+        <PropertyRef Name="Players_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

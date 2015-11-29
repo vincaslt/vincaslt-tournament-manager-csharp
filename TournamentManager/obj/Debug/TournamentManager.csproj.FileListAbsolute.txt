@@ -1,0 +1,17 @@
+c:\users\vincas\documents\visual studio 2015\Projects\TournamentManager\TournamentManager\bin\Debug\TournamentManager.exe.config
+c:\users\vincas\documents\visual studio 2015\Projects\TournamentManager\TournamentManager\bin\Debug\TournamentManager.exe
+c:\users\vincas\documents\visual studio 2015\Projects\TournamentManager\TournamentManager\bin\Debug\TournamentManager.pdb
+c:\users\vincas\documents\visual studio 2015\Projects\TournamentManager\TournamentManager\obj\Debug\TournamentManager.csprojResolveAssemblyReference.cache
+c:\users\vincas\documents\visual studio 2015\Projects\TournamentManager\TournamentManager\obj\Debug\TournamentManager.MainForm.resources
+c:\users\vincas\documents\visual studio 2015\Projects\TournamentManager\TournamentManager\obj\Debug\TournamentManager.Properties.Resources.resources
+c:\users\vincas\documents\visual studio 2015\Projects\TournamentManager\TournamentManager\obj\Debug\TournamentManager.csproj.GenerateResource.Cache
+c:\users\vincas\documents\visual studio 2015\Projects\TournamentManager\TournamentManager\obj\Debug\TournamentManager.exe
+c:\users\vincas\documents\visual studio 2015\Projects\TournamentManager\TournamentManager\obj\Debug\TournamentManager.pdb
+c:\users\vincas\documents\visual studio 2015\Projects\TournamentManager\TournamentManager\obj\Debug\TournamentManager.WizardForm.resources
+C:\Users\Vincas\Documents\Visual Studio 2015\Projects\TournamentManager\TournamentManager\bin\Debug\EntityFramework.dll
+C:\Users\Vincas\Documents\Visual Studio 2015\Projects\TournamentManager\TournamentManager\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Vincas\Documents\Visual Studio 2015\Projects\TournamentManager\TournamentManager\bin\Debug\EntityFramework.xml
+C:\Users\Vincas\Documents\Visual Studio 2015\Projects\TournamentManager\TournamentManager\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Vincas\Documents\Visual Studio 2015\Projects\TournamentManager\TournamentManager\obj\Debug\TournamentManager.GameBrowserForm.resources
+C:\Users\Vincas\Documents\Visual Studio 2015\Projects\TournamentManager\TournamentManager\obj\Debug\TournamentManager.NewPlayerForm.resources
+C:\Users\Vincas\Documents\Visual Studio 2015\Projects\TournamentManager\TournamentManager\obj\Debug\TournamentManager.Services.NewGameForm.resources

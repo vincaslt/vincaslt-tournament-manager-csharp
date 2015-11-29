@@ -1,0 +1,539 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DatabaseModelStoreContainer">
+    <EntitySet Name="Tournaments" EntityType="DatabaseModel.Store.Tournaments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Players" EntityType="DatabaseModel.Store.Players" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Games" EntityType="DatabaseModel.Store.Games" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TimeControls" EntityType="DatabaseModel.Store.TimeControls" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AgeGroups" EntityType="DatabaseModel.Store.AgeGroups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Moves" EntityType="DatabaseModel.Store.Moves" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TournamentTimeControl" EntityType="DatabaseModel.Store.TournamentTimeControl" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TournamentAgeGroup" EntityType="DatabaseModel.Store.TournamentAgeGroup" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TournamentPlayer" EntityType="DatabaseModel.Store.TournamentPlayer" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_TournamentTimeControl_Tournament" Association="DatabaseModel.Store.FK_TournamentTimeControl_Tournament">
+      <End Role="Tournament" EntitySet="Tournaments" />
+      <End Role="TournamentTimeControl" EntitySet="TournamentTimeControl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TournamentTimeControl_TimeControl" Association="DatabaseModel.Store.FK_TournamentTimeControl_TimeControl">
+      <End Role="TimeControl" EntitySet="TimeControls" />
+      <End Role="TournamentTimeControl" EntitySet="TournamentTimeControl" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TournamentAgeGroup_Tournament" Association="DatabaseModel.Store.FK_TournamentAgeGroup_Tournament">
+      <End Role="Tournament" EntitySet="Tournaments" />
+      <End Role="TournamentAgeGroup" EntitySet="TournamentAgeGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TournamentAgeGroup_AgeGroup" Association="DatabaseModel.Store.FK_TournamentAgeGroup_AgeGroup">
+      <End Role="AgeGroup" EntitySet="AgeGroups" />
+      <End Role="TournamentAgeGroup" EntitySet="TournamentAgeGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TournamentPlayer_Tournament" Association="DatabaseModel.Store.FK_TournamentPlayer_Tournament">
+      <End Role="Tournament" EntitySet="Tournaments" />
+      <End Role="TournamentPlayer" EntitySet="TournamentPlayer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TournamentPlayer_Player" Association="DatabaseModel.Store.FK_TournamentPlayer_Player">
+      <End Role="Player" EntitySet="Players" />
+      <End Role="TournamentPlayer" EntitySet="TournamentPlayer" />
+    </AssociationSet>
+    <AssociationSet Name="GamePlayer" Association="DatabaseModel.Store.GamePlayerWhite">
+      <End Role="Game" EntitySet="Games" />
+      <End Role="Player" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="GamePlayer1" Association="DatabaseModel.Store.GamePlayerBlack">
+      <End Role="Game" EntitySet="Games" />
+      <End Role="Player" EntitySet="Players" />
+    </AssociationSet>
+    <AssociationSet Name="GameTimeControl" Association="DatabaseModel.Store.GameTimeControl">
+      <End Role="Game" EntitySet="Games" />
+      <End Role="TimeControl" EntitySet="TimeControls" />
+    </AssociationSet>
+    <AssociationSet Name="MoveGame" Association="DatabaseModel.Store.MoveGame">
+      <End Role="Move" EntitySet="Moves" />
+      <End Role="Game" EntitySet="Games" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Tournaments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BirthDate" Type="datetime" Nullable="false" />
+    <Property Name="Rating" Type="float" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Games">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Result" Type="nvarchar" Nullable="false" MaxLength="7" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="PlayerWhite_Id" Type="int" Nullable="false" />
+    <Property Name="PlayerBlack_Id" Type="int" Nullable="false" />
+    <Property Name="TimeControl_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TimeControls">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Control" Type="nvarchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="AgeGroups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BirthDate" Type="datetime" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Moves">
+    <Key>
+      <PropertyRef Name="Number" />
+      <PropertyRef Name="GameId" />
+      <PropertyRef Name="Color" />
+    </Key>
+    <Property Name="Number" Type="int" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="GameId" Type="int" Nullable="false" />
+    <Property Name="Color" Type="nchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="1" />
+    <Property Name="From" Type="nchar" Nullable="false" MaxLength="2" />
+    <Property Name="To" Type="nchar" Nullable="false" MaxLength="2" />
+    <Property Name="Piece" Type="nchar" Nullable="false" MaxLength="1" />
+    <Property Name="Game_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TournamentTimeControl">
+    <Key>
+      <PropertyRef Name="Tournaments_Id" />
+      <PropertyRef Name="TimeControls_Id" />
+    </Key>
+    <Property Name="Tournaments_Id" Type="int" Nullable="false" />
+    <Property Name="TimeControls_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TournamentAgeGroup">
+    <Key>
+      <PropertyRef Name="Tournaments_Id" />
+      <PropertyRef Name="AgeGroups_Id" />
+    </Key>
+    <Property Name="Tournaments_Id" Type="int" Nullable="false" />
+    <Property Name="AgeGroups_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TournamentPlayer">
+    <Key>
+      <PropertyRef Name="Tournaments_Id" />
+      <PropertyRef Name="Players_Id" />
+    </Key>
+    <Property Name="Tournaments_Id" Type="int" Nullable="false" />
+    <Property Name="Players_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="GamePlayerWhite">
+    <End Role="Game" Type="DatabaseModel.Store.Games" Multiplicity="*" />
+    <End Role="Player" Type="DatabaseModel.Store.Players" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="PlayerWhite_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GamePlayerBlack">
+    <End Role="Game" Type="DatabaseModel.Store.Games" Multiplicity="*" />
+    <End Role="Player" Type="DatabaseModel.Store.Players" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="PlayerBlack_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GameTimeControl">
+    <End Role="Game" Type="DatabaseModel.Store.Games" Multiplicity="*" />
+    <End Role="TimeControl" Type="DatabaseModel.Store.TimeControls" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="TimeControl">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Game">
+        <PropertyRef Name="TimeControl_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MoveGame">
+    <End Role="Move" Type="DatabaseModel.Store.Moves" Multiplicity="*" />
+    <End Role="Game" Type="DatabaseModel.Store.Games" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Game">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Move">
+        <PropertyRef Name="Game_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TournamentTimeControl_Tournament">
+    <End Role="Tournament" Type="DatabaseModel.Store.Tournaments" Multiplicity="1" />
+    <End Role="TournamentTimeControl" Type="DatabaseModel.Store.TournamentTimeControl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tournament">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TournamentTimeControl">
+        <PropertyRef Name="Tournaments_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TournamentTimeControl_TimeControl">
+    <End Role="TournamentTimeControl" Type="DatabaseModel.Store.TournamentTimeControl" Multiplicity="*" />
+    <End Role="TimeControl" Type="DatabaseModel.Store.TimeControls" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="TimeControl">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TournamentTimeControl">
+        <PropertyRef Name="TimeControls_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TournamentAgeGroup_Tournament">
+    <End Role="Tournament" Type="DatabaseModel.Store.Tournaments" Multiplicity="1" />
+    <End Role="TournamentAgeGroup" Type="DatabaseModel.Store.TournamentAgeGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tournament">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TournamentAgeGroup">
+        <PropertyRef Name="Tournaments_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TournamentAgeGroup_AgeGroup">
+    <End Role="TournamentAgeGroup" Type="DatabaseModel.Store.TournamentAgeGroup" Multiplicity="*" />
+    <End Role="AgeGroup" Type="DatabaseModel.Store.AgeGroups" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AgeGroup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TournamentAgeGroup">
+        <PropertyRef Name="AgeGroups_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TournamentPlayer_Tournament">
+    <End Role="Tournament" Type="DatabaseModel.Store.Tournaments" Multiplicity="1" />
+    <End Role="TournamentPlayer" Type="DatabaseModel.Store.TournamentPlayer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tournament">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TournamentPlayer">
+        <PropertyRef Name="Tournaments_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TournamentPlayer_Player">
+    <End Role="TournamentPlayer" Type="DatabaseModel.Store.TournamentPlayer" Multiplicity="*" />
+    <End Role="Player" Type="DatabaseModel.Store.Players" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TournamentPlayer">
+        <PropertyRef Name="Players_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DatabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DatabaseModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tournaments" EntityType="DatabaseModel.Tournament" />
+          <EntitySet Name="Players" EntityType="DatabaseModel.Player" />
+          <EntitySet Name="Games" EntityType="DatabaseModel.Game" />
+          <EntitySet Name="TimeControls" EntityType="DatabaseModel.TimeControl" />
+          <EntitySet Name="AgeGroups" EntityType="DatabaseModel.AgeGroup" />
+          <EntitySet Name="Moves" EntityType="DatabaseModel.Move" />
+          <AssociationSet Name="TournamentTimeControl" Association="DatabaseModel.TournamentTimeControl">
+            <End Role="Tournament" EntitySet="Tournaments" />
+            <End Role="TimeControl" EntitySet="TimeControls" />
+          </AssociationSet>
+          <AssociationSet Name="TournamentAgeGroup" Association="DatabaseModel.TournamentAgeGroup">
+            <End Role="Tournament" EntitySet="Tournaments" />
+            <End Role="AgeGroup" EntitySet="AgeGroups" />
+          </AssociationSet>
+          <AssociationSet Name="TournamentPlayer" Association="DatabaseModel.TournamentPlayer">
+            <End Role="Tournament" EntitySet="Tournaments" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="GamePlayer" Association="DatabaseModel.GamePlayerWhite">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="GamePlayer1" Association="DatabaseModel.GamePlayerBlack">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Player" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="GameTimeControl" Association="DatabaseModel.GameTimeControl">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="TimeControl" EntitySet="TimeControls" />
+          </AssociationSet>
+          <AssociationSet Name="MoveGame" Association="DatabaseModel.MoveGame">
+            <End Role="Move" EntitySet="Moves" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Tournament">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="TimeControls" Relationship="DatabaseModel.TournamentTimeControl" FromRole="Tournament" ToRole="TimeControl" />
+          <NavigationProperty Name="AgeGroups" Relationship="DatabaseModel.TournamentAgeGroup" FromRole="Tournament" ToRole="AgeGroup" />
+          <NavigationProperty Name="Players" Relationship="DatabaseModel.TournamentPlayer" FromRole="Tournament" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Rating" Type="Double" Nullable="true" />
+          <NavigationProperty Name="Tournaments" Relationship="DatabaseModel.TournamentPlayer" FromRole="Player" ToRole="Tournament" />
+          <NavigationProperty Name="GamesAsWhite" Relationship="DatabaseModel.GamePlayerWhite" FromRole="Player" ToRole="Game" />
+          <NavigationProperty Name="GamesAsBlack" Relationship="DatabaseModel.GamePlayerBlack" FromRole="Player" ToRole="Game" />
+          </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Result" Type="String" Nullable="false" MaxLength="7" Unicode="true" FixedLength="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="PlayerWhite" Relationship="DatabaseModel.GamePlayerWhite" FromRole="Game" ToRole="Player" />
+          <NavigationProperty Name="PlayerBlack" Relationship="DatabaseModel.GamePlayerBlack" FromRole="Game" ToRole="Player" />
+          <NavigationProperty Name="TimeControl" Relationship="DatabaseModel.GameTimeControl" FromRole="Game" ToRole="TimeControl" />
+          <NavigationProperty Name="Moves" Relationship="DatabaseModel.MoveGame" FromRole="Game" ToRole="Move" />
+        </EntityType>
+        <EntityType Name="TimeControl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Control" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Tournaments" Relationship="DatabaseModel.TournamentTimeControl" FromRole="TimeControl" ToRole="Tournament" />
+          <NavigationProperty Name="Games" Relationship="DatabaseModel.GameTimeControl" FromRole="TimeControl" ToRole="Game" />
+        </EntityType>
+        <EntityType Name="AgeGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Tournaments" Relationship="DatabaseModel.TournamentAgeGroup" FromRole="AgeGroup" ToRole="Tournament" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Move" >
+          <Key>
+            <PropertyRef Name="Number" />
+            <PropertyRef Name="GameId" />
+            <PropertyRef Name="Color" />
+          </Key>
+          <Property Name="Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="GameId" Type="Int32" Nullable="false" />
+          <Property Name="Color" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="From" Type="String" Nullable="false" FixedLength="true" MaxLength="2" Unicode="true" />
+          <Property Name="To" Type="String" Nullable="false" FixedLength="true" MaxLength="2" Unicode="true" />
+          <Property Name="Piece" Type="String" Nullable="false" FixedLength="true" MaxLength="1" Unicode="true" />
+          <NavigationProperty Name="Game" Relationship="DatabaseModel.MoveGame" FromRole="Move" ToRole="Game" />
+        </EntityType>
+        <Association Name="TournamentTimeControl">
+          <End Type="DatabaseModel.Tournament" Role="Tournament" Multiplicity="*" />
+          <End Type="DatabaseModel.TimeControl" Role="TimeControl" Multiplicity="*" />
+        </Association>
+        <Association Name="TournamentAgeGroup">
+          <End Type="DatabaseModel.Tournament" Role="Tournament" Multiplicity="*" />
+          <End Type="DatabaseModel.AgeGroup" Role="AgeGroup" Multiplicity="*" />
+        </Association>
+        <Association Name="TournamentPlayer">
+          <End Type="DatabaseModel.Tournament" Role="Tournament" Multiplicity="*" />
+          <End Type="DatabaseModel.Player" Role="Player" Multiplicity="*" />
+        </Association>
+        <Association Name="GamePlayerWhite">
+          <End Type="DatabaseModel.Game" Role="Game" Multiplicity="*" />
+          <End Type="DatabaseModel.Player" Role="Player" Multiplicity="1" />
+        </Association>
+        <Association Name="GamePlayerBlack">
+          <End Type="DatabaseModel.Game" Role="Game" Multiplicity="*" />
+          <End Type="DatabaseModel.Player" Role="Player" Multiplicity="1" />
+        </Association>
+        <Association Name="GameTimeControl">
+          <End Type="DatabaseModel.Game" Role="Game" Multiplicity="*" />
+          <End Type="DatabaseModel.TimeControl" Role="TimeControl" Multiplicity="1" />
+        </Association>
+        <Association Name="MoveGame">
+          <End Type="DatabaseModel.Move" Role="Move" Multiplicity="*" />
+          <End Type="DatabaseModel.Game" Role="Game" Multiplicity="1" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseModelContainer">
+    <EntitySetMapping Name="Tournaments">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Tournament)">
+        <MappingFragment StoreEntitySet="Tournaments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Player)">
+        <MappingFragment StoreEntitySet="Players">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Game)">
+        <MappingFragment StoreEntitySet="Games">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TimeControls">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.TimeControl)">
+        <MappingFragment StoreEntitySet="TimeControls">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Control" ColumnName="Control" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AgeGroups">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.AgeGroup)">
+        <MappingFragment StoreEntitySet="AgeGroups">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Moves">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Move)">
+        <MappingFragment StoreEntitySet="Moves">
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="GameId" ColumnName="GameId" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="From" ColumnName="From" />
+          <ScalarProperty Name="To" ColumnName="To" />
+          <ScalarProperty Name="Piece" ColumnName="Piece" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="TournamentTimeControl" TypeName="DatabaseModel.TournamentTimeControl" StoreEntitySet="TournamentTimeControl">
+      <EndProperty Name="Tournament">
+        <ScalarProperty Name="Id" ColumnName="Tournaments_Id" />
+      </EndProperty>
+      <EndProperty Name="TimeControl">
+        <ScalarProperty Name="Id" ColumnName="TimeControls_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TournamentAgeGroup" TypeName="DatabaseModel.TournamentAgeGroup" StoreEntitySet="TournamentAgeGroup">
+      <EndProperty Name="Tournament">
+        <ScalarProperty Name="Id" ColumnName="Tournaments_Id" />
+      </EndProperty>
+      <EndProperty Name="AgeGroup">
+        <ScalarProperty Name="Id" ColumnName="AgeGroups_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TournamentPlayer" TypeName="DatabaseModel.TournamentPlayer" StoreEntitySet="TournamentPlayer">
+      <EndProperty Name="Tournament">
+        <ScalarProperty Name="Id" ColumnName="Tournaments_Id" />
+      </EndProperty>
+      <EndProperty Name="Player">
+        <ScalarProperty Name="Id" ColumnName="Players_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GamePlayer" TypeName="DatabaseModel.GamePlayerWhite" StoreEntitySet="Games">
+      <EndProperty Name="Player">
+        <ScalarProperty Name="Id" ColumnName="PlayerWhite_Id" />
+      </EndProperty>
+      <EndProperty Name="Game">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GamePlayer1" TypeName="DatabaseModel.GamePlayerBlack" StoreEntitySet="Games">
+      <EndProperty Name="Player">
+        <ScalarProperty Name="Id" ColumnName="PlayerBlack_Id" />
+      </EndProperty>
+      <EndProperty Name="Game">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GameTimeControl" TypeName="DatabaseModel.GameTimeControl" StoreEntitySet="Games">
+      <EndProperty Name="TimeControl">
+        <ScalarProperty Name="Id" ColumnName="TimeControl_Id" />
+      </EndProperty>
+      <EndProperty Name="Game">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MoveGame" TypeName="DatabaseModel.MoveGame" StoreEntitySet="Moves">
+      <EndProperty Name="Game">
+        <ScalarProperty Name="Id" ColumnName="Game_Id" />
+      </EndProperty>
+      <EndProperty Name="Move">
+        <ScalarProperty Name="Number" ColumnName="Number" />
+        <ScalarProperty Name="GameId" ColumnName="GameId" />
+        <ScalarProperty Name="Color" ColumnName="Color" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
