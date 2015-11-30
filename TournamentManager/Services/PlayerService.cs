@@ -91,5 +91,12 @@ namespace TournamentManager.Services
 
             return players;
         }
+
+        public void DeleteTournamentPlayer(Player player, Tournament tournament)
+        {
+            var t = _entities.Tournaments.Find(tournament.Id);
+            t.Players.Remove(_entities.Players.First(p => p.Id == player.Id));
+            _entities.SaveChanges();
+        }
     }
 }

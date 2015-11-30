@@ -58,6 +58,7 @@
             this.listViewTable.TabIndex = 0;
             this.listViewTable.UseCompatibleStateImageBehavior = false;
             this.listViewTable.View = System.Windows.Forms.View.Details;
+            this.listViewTable.KeyUp += new System.Windows.Forms.KeyEventHandler(this.listViewTable_KeyUp);
             // 
             // columnHeader1
             // 

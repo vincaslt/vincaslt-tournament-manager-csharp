@@ -57,6 +57,7 @@ namespace TournamentManager.Forms
                 ).ToString(CultureInfo.CurrentCulture));
                 entry.SubItems.Add((player.GamesAsWhite?.Count + player.GamesAsBlack?.Count).ToString());
                 entry.SubItems.Add(PlayerService.Instance.FindPlayerGroup(player).Name);
+                entry.Tag = player;
                 listViewTable.Items.Add(entry);
             }
         }
@@ -64,6 +65,16 @@ namespace TournamentManager.Forms
         private void FormMain_Activated(object sender, EventArgs e)
         {
             RefreshTable();
+        }
+
+        private void listViewTable_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                PlayerService.Instance.DeleteTournamentPlayer(
+                    (Player)listViewTable.SelectedItems[0].Tag, TournamentManager.Instance.ActiveTournament); 
+                RefreshTable();
+            }
         }
     }
 }
