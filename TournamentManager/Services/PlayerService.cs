@@ -16,7 +16,7 @@ namespace TournamentManager.Services
     {
         public static PlayerService Instance { get; } = new PlayerService();
 
-        private  readonly DatabaseModelContainer _entities = new DatabaseModelContainer();
+        private  readonly DatabaseModelContainer _entities = TournamentManager.Instance.Entities;
 
         private PlayerService() { }
 
@@ -69,15 +69,11 @@ namespace TournamentManager.Services
 
                 using (var cmd = new SqlCommand(command, conn))
                 {
-                    Console.WriteLine("command created successfuly");
-
                     var adapter = new SqlDataAdapter(cmd);
 
                     conn.Open();
-                    Console.WriteLine("connection opened successfuly");
                     adapter.Fill(table);
                     conn.Close();
-                    Console.WriteLine("connection closed successfuly");
                 }
             }
 

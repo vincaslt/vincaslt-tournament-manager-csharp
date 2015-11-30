@@ -36,8 +36,6 @@
             this.radioResultWhite = new System.Windows.Forms.RadioButton();
             this.radioResultDraw = new System.Windows.Forms.RadioButton();
             this.radioResultBlack = new System.Windows.Forms.RadioButton();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboTournament = new System.Windows.Forms.ComboBox();
             this.textBoxMoves = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -121,23 +119,6 @@
             this.radioResultBlack.Text = "0:1";
             this.radioResultBlack.UseVisualStyleBackColor = true;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(368, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Tournament:";
-            // 
-            // comboTournament
-            // 
-            this.comboTournament.FormattingEnabled = true;
-            this.comboTournament.Location = new System.Drawing.Point(463, 6);
-            this.comboTournament.Name = "comboTournament";
-            this.comboTournament.Size = new System.Drawing.Size(121, 24);
-            this.comboTournament.TabIndex = 9;
-            // 
             // textBoxMoves
             // 
             this.textBoxMoves.Location = new System.Drawing.Point(15, 110);
@@ -158,7 +139,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(365, 46);
+            this.label6.Location = new System.Drawing.Point(368, 9);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(92, 17);
             this.label6.TabIndex = 12;
@@ -167,7 +148,7 @@
             // comboTimeControl
             // 
             this.comboTimeControl.FormattingEnabled = true;
-            this.comboTimeControl.Location = new System.Drawing.Point(463, 43);
+            this.comboTimeControl.Location = new System.Drawing.Point(466, 6);
             this.comboTimeControl.Name = "comboTimeControl";
             this.comboTimeControl.Size = new System.Drawing.Size(121, 24);
             this.comboTimeControl.TabIndex = 13;
@@ -186,14 +167,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 595);
+            this.ClientSize = new System.Drawing.Size(597, 595);
             this.Controls.Add(this.buttonSubmit);
             this.Controls.Add(this.comboTimeControl);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxMoves);
-            this.Controls.Add(this.comboTournament);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.radioResultBlack);
             this.Controls.Add(this.radioResultDraw);
             this.Controls.Add(this.radioResultWhite);
@@ -221,8 +200,6 @@
         private System.Windows.Forms.RadioButton radioResultWhite;
         private System.Windows.Forms.RadioButton radioResultDraw;
         private System.Windows.Forms.RadioButton radioResultBlack;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboTournament;
         private System.Windows.Forms.TextBox textBoxMoves;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;

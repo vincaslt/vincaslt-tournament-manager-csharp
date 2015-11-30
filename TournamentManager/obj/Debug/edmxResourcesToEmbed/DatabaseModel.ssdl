@@ -57,6 +57,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Players">
     <Key>
@@ -100,10 +101,9 @@
       <PropertyRef Name="Color" />
       <PropertyRef Name="GameId" />
     </Key>
-    <Property Name="Number" Type="int" StoreGeneratedPattern="Computed" Nullable="false" />
-    <Property Name="Color" Type="nchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="1" />
-    <Property Name="From" Type="nchar" Nullable="false" MaxLength="2" />
-    <Property Name="To" Type="nchar" Nullable="false" MaxLength="2" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="Color" Type="nchar" Nullable="false" MaxLength="1" />
+    <Property Name="Field" Type="nchar" Nullable="false" MaxLength="2" />
     <Property Name="Piece" Type="nchar" Nullable="false" MaxLength="1" />
     <Property Name="GameId" Type="int" Nullable="false" />
   </EntityType>

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/30/2015 18:20:42
+-- Date Created: 11/30/2015 21:34:37
 -- Generated from EDMX file: C:\Users\Vincas\Documents\Visual Studio 2015\Projects\TournamentManager\TournamentManager\DatabaseModel.edmx
 -- --------------------------------------------------
 
@@ -87,7 +87,8 @@ GO
 -- Creating table 'Tournaments'
 CREATE TABLE [dbo].[Tournaments] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NOT NULL
+    [Name] nvarchar(max)  NOT NULL,
+    [Date] datetime  NOT NULL
 );
 GO
 
@@ -131,8 +132,7 @@ GO
 CREATE TABLE [dbo].[Moves] (
     [Number] int  NOT NULL,
     [Color] nchar(1)  NOT NULL,
-    [From] nchar(2)  NOT NULL,
-    [To] nchar(2)  NOT NULL,
+    [Field] nchar(2)  NOT NULL,
     [Piece] nchar(1)  NOT NULL,
     [GameId] int  NOT NULL
 );

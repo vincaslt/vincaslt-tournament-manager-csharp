@@ -45,6 +45,7 @@
     <NavigationProperty Name="TimeControls" Relationship="DatabaseModel.TournamentTimeControl" FromRole="Tournament" ToRole="TimeControl" />
     <NavigationProperty Name="AgeGroups" Relationship="DatabaseModel.TournamentAgeGroup" FromRole="Tournament" ToRole="AgeGroup" />
     <NavigationProperty Name="Players" Relationship="DatabaseModel.TournamentPlayer" FromRole="Tournament" ToRole="Player" />
+    <Property Name="Date" Type="DateTime" Nullable="false" />
   </EntityType>
   <EntityType Name="Player">
     <Key>
@@ -95,10 +96,9 @@
       <PropertyRef Name="Color" />
       <PropertyRef Name="GameId" />
     </Key>
-    <Property Name="Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-    <Property Name="Color" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" MaxLength="1" FixedLength="true" Unicode="true" />
-    <Property Name="From" Type="String" Nullable="false" FixedLength="true" MaxLength="2" Unicode="true" />
-    <Property Name="To" Type="String" Nullable="false" FixedLength="true" MaxLength="2" Unicode="true" />
+    <Property Name="Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+    <Property Name="Color" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="Field" Type="String" Nullable="false" FixedLength="true" MaxLength="2" Unicode="true" />
     <Property Name="Piece" Type="String" Nullable="false" FixedLength="true" MaxLength="1" Unicode="true" />
     <NavigationProperty Name="Game" Relationship="DatabaseModel.MoveGame" FromRole="Move" ToRole="Game" />
     <Property Name="GameId" Type="Int32" Nullable="false" />

@@ -6,6 +6,7 @@
         <MappingFragment StoreEntitySet="Tournaments">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -52,8 +53,7 @@
           <ScalarProperty Name="Number" ColumnName="Number" />
           <ScalarProperty Name="Color" ColumnName="Color" />
           <ScalarProperty Name="GameId" ColumnName="GameId" />
-          <ScalarProperty Name="From" ColumnName="From" />
-          <ScalarProperty Name="To" ColumnName="To" />
+          <ScalarProperty Name="Field" ColumnName="Field" />
           <ScalarProperty Name="Piece" ColumnName="Piece" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -16,8 +16,7 @@ namespace TournamentManager
     {
         public int Number { get; set; }
         public string Color { get; set; }
-        public string From { get; set; }
-        public string To { get; set; }
+        public string Field { get; set; }
         public string Piece { get; set; }
         public int GameId { get; set; }
     

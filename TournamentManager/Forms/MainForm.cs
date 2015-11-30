@@ -41,7 +41,9 @@ namespace TournamentManager.Forms
 
         private void RefreshTable()
         {
-            var tournament = TournamentManager.Instance.ActiveTournament;
+            listViewTable.Items.Clear();
+            var tournament = 
+                TournamentService.Instance.FindTournamentById(TournamentManager.Instance.ActiveTournament.Id);
             if (tournament.Players == null) return;
 
             foreach (var player in tournament.Players)
@@ -57,6 +59,11 @@ namespace TournamentManager.Forms
                 entry.SubItems.Add(PlayerService.Instance.FindPlayerGroup(player).Name);
                 listViewTable.Items.Add(entry);
             }
+        }
+
+        private void FormMain_Activated(object sender, EventArgs e)
+        {
+            RefreshTable();
         }
     }
 }

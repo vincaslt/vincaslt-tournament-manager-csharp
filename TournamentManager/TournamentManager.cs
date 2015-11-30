@@ -13,6 +13,7 @@ namespace TournamentManager
         private TournamentManager() { }
 
         public Tournament ActiveTournament { get; set; }
+        public readonly DatabaseModelContainer Entities = new DatabaseModelContainer();
 
     }
 }

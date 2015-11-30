@@ -11,18 +11,22 @@ namespace TournamentManager.Services
     {
         public static GameService Instance { get; } = new GameService();
 
-        private readonly DatabaseModelContainer _entities = new DatabaseModelContainer();
+        private readonly DatabaseModelContainer _entities = TournamentManager.Instance.Entities;
 
         private GameService() { }
 
-        public Game CreateGame(Player whitePlayer, Player blackPlayer, DateTime date, TimeControl time)
+        public Game CreateGame(Player whitePlayer, Player blackPlayer, DateTime date, TimeControl time, string result, string movesStr)
         {
+            var moves = ParseMoves(movesStr);
+
             var game = _entities.Games.Add(new Game
             {
-                PlayerWhite = whitePlayer,
-                PlayerBlack = blackPlayer,
+                PlayerWhite = _entities.Players.Find(whitePlayer.Id),
+                PlayerBlack = _entities.Players.Find(blackPlayer.Id),
                 Date = date,
-                TimeControl = time
+                TimeControl = time,
+                Result = result,
+                Moves = moves
             });
 
             _entities.SaveChanges();
@@ -64,31 +68,40 @@ namespace TournamentManager.Services
             return games;
         }
 
-        public List<Move> ParseMoves(string str, Game game)
+        private static List<Move> ParseMoves(string str)
         {
             var moves = new List<Move>();
-            var splitStr = str.Split(null);
-            for (var i = 0; i <= splitStr.Length - 3; i += 3)
+            var splitStr = str.Replace("\n", string.Empty).Split(null);
+            for (var i = 0; i <= splitStr.Length - 1; i += 3)
             {
-                var moveNumber = int.Parse(splitStr[0].TrimEnd('.'));
+                var moveNumber = int.Parse(splitStr[i].Replace(".", string.Empty));
 
-                for (var j = 0; j < 2; j++)
+                for (var j = 1; j <= 2 && i + j < splitStr.Length; j++)
                 {
-                    var moveStr = splitStr[i + 1].Replace("x", "");
+                    var moveStr = splitStr[i + j].Replace("x", string.Empty);
+                    moveStr = moveStr.Replace("+", string.Empty);
+                    moveStr = moveStr.Replace("#", string.Empty);
 
-                    if (moveStr.Length == 4)
+                    if (moveStr.Length == 2)
                     {
                         moveStr = "p" + moveStr;
                     }
-                    
+
+                    var piece = moveStr[0].ToString();
+                    var field = moveStr.Substring(1, 2);
+
+                    if (piece == "O")
+                    {
+                        piece = "K";
+                        field = moveStr == "0-0" ? "sc" : "lc";
+                    }
+
                     moves.Add(new Move
                     {
                         Color = j == 1 ? "w" : "b", 
                         Number = moveNumber,
-                        Game = game,
-                        Piece = moveStr[0].ToString(),
-                        From = moveStr.Substring(1, 2),
-                        To = moveStr.Substring(3, 2)
+                        Piece = piece,
+                        Field = field
                     });
                 }
             }
