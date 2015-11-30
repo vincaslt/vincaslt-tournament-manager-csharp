@@ -58,6 +58,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -93,25 +94,25 @@
     <Compile Include="Game.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="GameBrowserForm.cs">
+    <Compile Include="Forms\GameBrowserForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GameBrowserForm.Designer.cs">
+    <Compile Include="Forms\GameBrowserForm.Designer.cs">
       <DependentUpon>GameBrowserForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Move.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="NewPlayerForm.cs">
+    <Compile Include="Forms\NewPlayerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewPlayerForm.Designer.cs">
+    <Compile Include="Forms\NewPlayerForm.Designer.cs">
       <DependentUpon>NewPlayerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Player.cs">
@@ -119,10 +120,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="NewGameForm.cs">
+    <Compile Include="Forms\NewGameForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewGameForm.Designer.cs">
+    <Compile Include="Forms\NewGameForm.Designer.cs">
       <DependentUpon>NewGameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\GameService.cs" />
@@ -136,19 +137,19 @@
     </Compile>
     <Compile Include="TournamentManager.cs" />
     <Compile Include="utils\NullableExtension.cs" />
-    <Compile Include="WizardForm.cs">
+    <Compile Include="Forms\WizardForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WizardForm.Designer.cs">
+    <Compile Include="Forms\WizardForm.Designer.cs">
       <DependentUpon>WizardForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="GameBrowserForm.resx">
+    <EmbeddedResource Include="Forms\GameBrowserForm.resx">
       <DependentUpon>GameBrowserForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewPlayerForm.resx">
+    <EmbeddedResource Include="Forms\NewPlayerForm.resx">
       <DependentUpon>NewPlayerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -160,10 +161,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="NewGameForm.resx">
+    <EmbeddedResource Include="Forms\NewGameForm.resx">
       <DependentUpon>NewGameForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WizardForm.resx">
+    <EmbeddedResource Include="Forms\WizardForm.resx">
       <DependentUpon>WizardForm.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="DatabaseModel.edmx">

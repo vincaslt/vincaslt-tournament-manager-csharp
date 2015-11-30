@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using TournamentManager.Services;
 using TournamentManager.utils;
 
-namespace TournamentManager
+namespace TournamentManager.Forms
 {
     public partial class NewPlayerForm : Form
     {

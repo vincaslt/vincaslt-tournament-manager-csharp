@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TournamentManager.Services;
 
-namespace TournamentManager
+namespace TournamentManager.Forms
 {
     public partial class MainForm : Form
     {

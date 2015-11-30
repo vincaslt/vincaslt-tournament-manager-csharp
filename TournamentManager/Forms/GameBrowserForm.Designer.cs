@@ -1,4 +1,4 @@
-﻿namespace TournamentManager
+﻿namespace TournamentManager.Forms
 {
     partial class GameBrowserForm
     {

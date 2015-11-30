@@ -102,16 +102,15 @@
   <EntityType Name="Moves">
     <Key>
       <PropertyRef Name="Number" />
-      <PropertyRef Name="GameId" />
       <PropertyRef Name="Color" />
+      <PropertyRef Name="GameId" />
     </Key>
     <Property Name="Number" Type="int" StoreGeneratedPattern="Computed" Nullable="false" />
-    <Property Name="GameId" Type="int" Nullable="false" />
     <Property Name="Color" Type="nchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="1" />
     <Property Name="From" Type="nchar" Nullable="false" MaxLength="2" />
     <Property Name="To" Type="nchar" Nullable="false" MaxLength="2" />
     <Property Name="Piece" Type="nchar" Nullable="false" MaxLength="1" />
-    <Property Name="Game_Id" Type="int" Nullable="false" />
+    <Property Name="GameId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TournamentTimeControl">
     <Key>
@@ -181,7 +180,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Move">
-        <PropertyRef Name="Game_Id" />
+        <PropertyRef Name="GameId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -353,16 +352,16 @@
         <EntityType Name="Move" >
           <Key>
             <PropertyRef Name="Number" />
-            <PropertyRef Name="GameId" />
             <PropertyRef Name="Color" />
+            <PropertyRef Name="GameId" />
           </Key>
           <Property Name="Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="GameId" Type="Int32" Nullable="false" />
           <Property Name="Color" Type="String" Nullable="false" annotation:StoreGeneratedPattern="Identity" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="From" Type="String" Nullable="false" FixedLength="true" MaxLength="2" Unicode="true" />
           <Property Name="To" Type="String" Nullable="false" FixedLength="true" MaxLength="2" Unicode="true" />
           <Property Name="Piece" Type="String" Nullable="false" FixedLength="true" MaxLength="1" Unicode="true" />
           <NavigationProperty Name="Game" Relationship="DatabaseModel.MoveGame" FromRole="Move" ToRole="Game" />
+          <Property Name="GameId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="TournamentTimeControl">
           <End Type="DatabaseModel.Tournament" Role="Tournament" Multiplicity="*" />
@@ -391,6 +390,14 @@
         <Association Name="MoveGame">
           <End Type="DatabaseModel.Move" Role="Move" Multiplicity="*" />
           <End Type="DatabaseModel.Game" Role="Game" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Move">
+              <PropertyRef Name="GameId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -447,8 +454,8 @@
       <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Move)">
         <MappingFragment StoreEntitySet="Moves">
           <ScalarProperty Name="Number" ColumnName="Number" />
-          <ScalarProperty Name="GameId" ColumnName="GameId" />
           <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="GameId" ColumnName="GameId" />
           <ScalarProperty Name="From" ColumnName="From" />
           <ScalarProperty Name="To" ColumnName="To" />
           <ScalarProperty Name="Piece" ColumnName="Piece" />
@@ -501,16 +508,6 @@
       </EndProperty>
       <EndProperty Name="Game">
         <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="MoveGame" TypeName="DatabaseModel.MoveGame" StoreEntitySet="Moves">
-      <EndProperty Name="Game">
-        <ScalarProperty Name="Id" ColumnName="Game_Id" />
-      </EndProperty>
-      <EndProperty Name="Move">
-        <ScalarProperty Name="Number" ColumnName="Number" />
-        <ScalarProperty Name="GameId" ColumnName="GameId" />
-        <ScalarProperty Name="Color" ColumnName="Color" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

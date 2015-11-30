@@ -5,6 +5,10 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using TournamentManager.utils;
 
 namespace TournamentManager.Services
 {
@@ -40,6 +44,56 @@ namespace TournamentManager.Services
                 .Where(g => player.BirthDate >= g.BirthDate)
                 .OrderByDescending(x => x.BirthDate)
                 .First();
+        }
+
+        /*
+            Finds players that play in certain tournament using DataTable and DataAdapter
+        */
+        public List<Player> FindPlayersByTournament(Tournament tournament)
+        {
+            //return _entities.Players.Where(p => p.Tournaments.Contains(tournament)).ToList();
+
+            var players = new List<Player>();
+
+            const string connectionString =
+                @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True";
+
+            var table = new DataTable("TournamentPlayers");
+            using (var conn = new SqlConnection(connectionString))
+            {
+                var command = "SELECT * FROM Players, TournamentPlayer " +
+                              $"WHERE TournamentPlayer.Tournaments_Id = {tournament.Id}" +
+                              "AND Players.Id = TournamentPlayer.Players_Id";
+
+                
+
+                using (var cmd = new SqlCommand(command, conn))
+                {
+                    Console.WriteLine("command created successfuly");
+
+                    var adapter = new SqlDataAdapter(cmd);
+
+                    conn.Open();
+                    Console.WriteLine("connection opened successfuly");
+                    adapter.Fill(table);
+                    conn.Close();
+                    Console.WriteLine("connection closed successfuly");
+                }
+            }
+
+            foreach (DataRow row in table.Rows)
+            {
+                players.Add(new Player
+                {
+                    Id = int.Parse(row["Id"].ToString()),
+                    Name = row["Name"].ToString(),
+                    Surname = row["Surname"].ToString(),
+                    BirthDate = DateTime.Parse(row["BirthDate"].ToString()),
+                    Rating = row["Rating"].ToString().GetValueOrNull<double>()
+                });
+            }
+
+            return players;
         }
     }
 }

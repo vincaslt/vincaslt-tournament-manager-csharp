@@ -15,11 +15,11 @@ namespace TournamentManager
     public partial class Move
     {
         public int Number { get; set; }
-        public int GameId { get; set; }
         public string Color { get; set; }
         public string From { get; set; }
         public string To { get; set; }
         public string Piece { get; set; }
+        public int GameId { get; set; }
     
         public virtual Game Game { get; set; }
     }

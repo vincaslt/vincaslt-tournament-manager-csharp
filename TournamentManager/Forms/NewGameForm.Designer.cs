@@ -1,4 +1,4 @@
-﻿namespace TournamentManager.Services
+﻿namespace TournamentManager.Forms
 {
     partial class NewGameForm
     {
@@ -180,6 +180,7 @@
             this.buttonSubmit.TabIndex = 14;
             this.buttonSubmit.Text = "Submit";
             this.buttonSubmit.UseVisualStyleBackColor = true;
+            this.buttonSubmit.Click += new System.EventHandler(this.buttonSubmit_Click);
             // 
             // NewGameForm
             // 
@@ -204,6 +205,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "NewGameForm";
             this.Text = "Add Game";
+            this.Load += new System.EventHandler(this.NewGameForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

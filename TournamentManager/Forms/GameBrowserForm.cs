@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TournamentManager.Services
+namespace TournamentManager.Forms
 {
-    public partial class NewGameForm : Form
+    public partial class GameBrowserForm : Form
     {
-        public NewGameForm()
+        public GameBrowserForm()
         {
             InitializeComponent();
         }

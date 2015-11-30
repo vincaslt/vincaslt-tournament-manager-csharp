@@ -34,5 +34,10 @@ namespace TournamentManager
         public virtual ICollection<Game> GamesAsWhite { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Game> GamesAsBlack { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Name} {Surname}";
+        }
     }
 }

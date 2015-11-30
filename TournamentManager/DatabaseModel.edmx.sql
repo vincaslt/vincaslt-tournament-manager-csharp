@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/29/2015 23:18:50
+-- Date Created: 11/30/2015 18:20:42
 -- Generated from EDMX file: C:\Users\Vincas\Documents\Visual Studio 2015\Projects\TournamentManager\TournamentManager\DatabaseModel.edmx
 -- --------------------------------------------------
 
@@ -130,12 +130,11 @@ GO
 -- Creating table 'Moves'
 CREATE TABLE [dbo].[Moves] (
     [Number] int  NOT NULL,
-    [GameId] int  NOT NULL,
     [Color] nchar(1)  NOT NULL,
     [From] nchar(2)  NOT NULL,
     [To] nchar(2)  NOT NULL,
     [Piece] nchar(1)  NOT NULL,
-    [Game_Id] int  NOT NULL
+    [GameId] int  NOT NULL
 );
 GO
 
@@ -194,10 +193,10 @@ ADD CONSTRAINT [PK_AgeGroups]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Number], [GameId], [Color] in table 'Moves'
+-- Creating primary key on [Number], [Color], [GameId] in table 'Moves'
 ALTER TABLE [dbo].[Moves]
 ADD CONSTRAINT [PK_Moves]
-    PRIMARY KEY CLUSTERED ([Number], [GameId], [Color] ASC);
+    PRIMARY KEY CLUSTERED ([Number], [Color], [GameId] ASC);
 GO
 
 -- Creating primary key on [Tournaments_Id], [TimeControls_Id] in table 'TournamentTimeControl'
@@ -339,10 +338,10 @@ ON [dbo].[Games]
     ([TimeControl_Id]);
 GO
 
--- Creating foreign key on [Game_Id] in table 'Moves'
+-- Creating foreign key on [GameId] in table 'Moves'
 ALTER TABLE [dbo].[Moves]
 ADD CONSTRAINT [FK_MoveGame]
-    FOREIGN KEY ([Game_Id])
+    FOREIGN KEY ([GameId])
     REFERENCES [dbo].[Games]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -351,7 +350,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_MoveGame'
 CREATE INDEX [IX_FK_MoveGame]
 ON [dbo].[Moves]
-    ([Game_Id]);
+    ([GameId]);
 GO
 
 -- --------------------------------------------------

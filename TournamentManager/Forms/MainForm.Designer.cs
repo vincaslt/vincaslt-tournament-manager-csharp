@@ -1,4 +1,4 @@
-﻿namespace TournamentManager
+﻿namespace TournamentManager.Forms
 {
     partial class MainForm
     {
@@ -51,41 +51,43 @@
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6});
+            this.listViewTable.FullRowSelect = true;
             this.listViewTable.Location = new System.Drawing.Point(9, 31);
             this.listViewTable.Name = "listViewTable";
             this.listViewTable.Size = new System.Drawing.Size(906, 572);
             this.listViewTable.TabIndex = 0;
             this.listViewTable.UseCompatibleStateImageBehavior = false;
+            this.listViewTable.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = -1;
+            this.columnHeader1.Width = 49;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Surname";
-            this.columnHeader2.Width = -1;
+            this.columnHeader2.Width = 66;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Rating";
-            this.columnHeader3.Width = -1;
+            this.columnHeader3.Width = 51;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Points";
-            this.columnHeader4.Width = -1;
+            this.columnHeader4.Width = 49;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Games Played";
-            this.columnHeader5.Width = -1;
+            this.columnHeader5.Width = 102;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Group";
-            this.columnHeader6.Width = -1;
+            this.columnHeader6.Width = 585;
             // 
             // menuStrip1
             // 

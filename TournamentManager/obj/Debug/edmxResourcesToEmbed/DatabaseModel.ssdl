@@ -97,16 +97,15 @@
   <EntityType Name="Moves">
     <Key>
       <PropertyRef Name="Number" />
-      <PropertyRef Name="GameId" />
       <PropertyRef Name="Color" />
+      <PropertyRef Name="GameId" />
     </Key>
     <Property Name="Number" Type="int" StoreGeneratedPattern="Computed" Nullable="false" />
-    <Property Name="GameId" Type="int" Nullable="false" />
     <Property Name="Color" Type="nchar" StoreGeneratedPattern="Identity" Nullable="false" MaxLength="1" />
     <Property Name="From" Type="nchar" Nullable="false" MaxLength="2" />
     <Property Name="To" Type="nchar" Nullable="false" MaxLength="2" />
     <Property Name="Piece" Type="nchar" Nullable="false" MaxLength="1" />
-    <Property Name="Game_Id" Type="int" Nullable="false" />
+    <Property Name="GameId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TournamentTimeControl">
     <Key>
@@ -176,7 +175,7 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Move">
-        <PropertyRef Name="Game_Id" />
+        <PropertyRef Name="GameId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

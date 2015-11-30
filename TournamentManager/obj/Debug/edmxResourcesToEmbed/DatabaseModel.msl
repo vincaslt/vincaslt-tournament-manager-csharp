@@ -50,8 +50,8 @@
       <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Move)">
         <MappingFragment StoreEntitySet="Moves">
           <ScalarProperty Name="Number" ColumnName="Number" />
-          <ScalarProperty Name="GameId" ColumnName="GameId" />
           <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="GameId" ColumnName="GameId" />
           <ScalarProperty Name="From" ColumnName="From" />
           <ScalarProperty Name="To" ColumnName="To" />
           <ScalarProperty Name="Piece" ColumnName="Piece" />
@@ -104,16 +104,6 @@
       </EndProperty>
       <EndProperty Name="Game">
         <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="MoveGame" TypeName="DatabaseModel.MoveGame" StoreEntitySet="Moves">
-      <EndProperty Name="Game">
-        <ScalarProperty Name="Id" ColumnName="Game_Id" />
-      </EndProperty>
-      <EndProperty Name="Move">
-        <ScalarProperty Name="Number" ColumnName="Number" />
-        <ScalarProperty Name="GameId" ColumnName="GameId" />
-        <ScalarProperty Name="Color" ColumnName="Color" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
